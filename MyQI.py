@@ -1,29 +1,31 @@
 from pynput import keyboard
 import datetime
-import sys
 import traceback
+import sys
+import os
 
+DIRECTORY = os.getcwd()
 win2 = []
-closing = {'e': False,
+closeFLAG = {'e': False,
             'x': False,
             'i': False,
             't': False
             }
 
 def on_press(key):
-    global closing
+    global closeFLAG
     try:
         Key__ = '{0}'.format(key.char)
         if Key__ in ('e', 'E'):
-            for k in closing.keys():
-                closing[k] = False
-            closing['e'] = True
-        elif Key__ in ('x', 'X') and closing['e']:
-            closing['x'] = True
-        elif Key__ in ('i', 'I') and closing['x']:
-            closing['i'] = True
-        elif Key__ in ('t', 'T') and closing['i']:
-            closing['t'] = True
+            for k in closeFLAG.keys():
+                closeFLAG[k] = False
+            closeFLAG['e'] = True
+        elif Key__ in ('x', 'X') and closeFLAG['e']:
+            closeFLAG['x'] = True
+        elif Key__ in ('i', 'I') and closeFLAG['x']:
+            closeFLAG['i'] = True
+        elif Key__ in ('t', 'T') and closeFLAG['i']:
+            closeFLAG['t'] = True
             sys.exit()
 
     except AttributeError:
@@ -37,7 +39,7 @@ def Add(key):
     global start
     global win2
     try:
-        with open('Funniestway.txt', 'a+') as o:
+        with open(f'{DIRECTORY}\Funniestway.txt', 'a+') as o:
             readed = o.read()
             if start:
                 if readed != '':

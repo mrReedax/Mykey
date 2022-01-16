@@ -1,2 +1,7 @@
-Funniestway
+.vscode
+Funniestway.txt
+MyKey.spec
 \venv
+\build
+\__pycache__
+\dist

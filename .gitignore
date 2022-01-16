@@ -1,6 +1,6 @@
 .vscode
 Funniestway.txt
-MyKey.spec
+*.spec
 \venv
 \build
 \__pycache__
